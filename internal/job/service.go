@@ -25,17 +25,6 @@ func NewService(repo Repository) *Service {
 	return &Service{repo: repo}
 }
 
-// ? Using the slice in built function
-/*
-func canTransition(from Status, to Status) bool {
-	for _, allowed := range allowedTransition[from] {
-		if allowed == to {
-			return true
-		}
-	}
-	return false
-}*/
-
 func (s *Service) Submit(ctx context.Context, command string, timeout int, priority string) (*Job, error) {
 
 	var newJob = &Job{
@@ -76,9 +65,6 @@ func (s *Service) Transition(ctx context.Context, id uuid.UUID, status Status) e
 	if ok := slices.Contains(transitionVal, status); ok == false {
 		return fmt.Errorf("status not in allowed transitions; currentJobStatus: %s , status given: %s", currentJobStatus, status)
 	}
-	// if acceptable := canTransition(currentJobStatus, status); acceptable == false {
-	// 	return fmt.Errorf("status not in allowed transitions: %v", acceptable)
-	// }
 
 	// * Retries logic
 	if currentJobStatus == StatusFailed && status == StatusPending {
