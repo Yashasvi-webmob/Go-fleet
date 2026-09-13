@@ -1,0 +1,35 @@
+syntax = "proto3"
+
+package notes.v1;
+option go_package = "example.com/notes/notesenv1"
+import "google/protobuf/timestamp.proto"
+import "google/protobuf/empty.proto"
+
+enum NoteStatus{
+    NOTES_STATUS_UNSPECIFIED = 0;
+    NOTE_STATUS_DRAFT = 1;
+    NOTE_STATUS_PUBLISHED =2;
+}
+
+
+message Note {
+  string id                        = 1;
+  string title                     = 2;
+  NoteStatus status                = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+
+message CreateNoteRequest {
+  string title = 1;
+}
+
+message GetNoteRequest {
+  string id = 1;
+}
+
+service NoteService {
+  rpc CreateNote(CreateNoteRequest) returns (Note);
+  rpc GetNote(GetNoteRequest)       returns (Note);
+  rpc DeleteNote(GetNoteRequest)    returns (google.protobuf.Empty);
+}
