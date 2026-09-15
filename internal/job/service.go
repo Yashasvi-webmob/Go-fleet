@@ -63,7 +63,7 @@ func (s *Service) Transition(ctx context.Context, id uuid.UUID, status Status) e
 	var transitionVal = allowedTransition[currentJobStatus]
 
 	if ok := slices.Contains(transitionVal, status); ok == false {
-		return fmt.Errorf("status not in allowed transitions; currentJobStatus: %s , status given: %s", currentJobStatus, status)
+		return fmt.Errorf("status not in allowed transitions; currentJobStatus: %s , status given: %s %w", currentJobStatus, status, ErrInvalidTransition)
 	}
 
 	// * Retries logic
@@ -71,7 +71,7 @@ func (s *Service) Transition(ctx context.Context, id uuid.UUID, status Status) e
 
 		retriesDone := currentJob.Retries
 		if retriesDone >= MaxRetries {
-			return fmt.Errorf("no more retries left for this job: %v", currentJob.ID)
+			return fmt.Errorf("no more retries left for this job: %v %w", currentJob.ID, ErrRetriesExhausted)
 		} else {
 			if err := s.repo.UpdateRetries(ctx, id, retriesDone+1); err != nil {
 				return fmt.Errorf("updating retires: %w", err)

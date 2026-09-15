@@ -9,6 +9,8 @@ import (
 )
 
 var ErrNotFound = errors.New("job not found")
+var ErrInvalidTransition = errors.New("invalid transition according to constraints")
+var ErrRetriesExhausted = errors.New("retries exhausted for this job")
 
 type InMemoryRepository struct {
 	mu   sync.Mutex

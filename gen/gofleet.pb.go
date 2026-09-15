@@ -27,10 +27,10 @@ type JobStatus int32
 
 const (
 	JobStatus_JOB_STATUS_UNSPECIFIED JobStatus = 0
-	JobStatus_JOB_STATUS_RUNNING     JobStatus = 1
-	JobStatus_JOB_STATUS_SUCCESS     JobStatus = 2
-	JobStatus_JOB_STATUS_FAILED      JobStatus = 3
-	JobStatus_JOB_STATUS_PENDING     JobStatus = 4
+	JobStatus_JOB_STATUS_PENDING     JobStatus = 1
+	JobStatus_JOB_STATUS_RUNNING     JobStatus = 2
+	JobStatus_JOB_STATUS_SUCCESS     JobStatus = 3
+	JobStatus_JOB_STATUS_FAILED      JobStatus = 4
 	JobStatus_JOB_STATUS_TIMEOUT     JobStatus = 5
 	JobStatus_JOB_STATUS_CANCELLED   JobStatus = 6
 )
@@ -39,19 +39,19 @@ const (
 var (
 	JobStatus_name = map[int32]string{
 		0: "JOB_STATUS_UNSPECIFIED",
-		1: "JOB_STATUS_RUNNING",
-		2: "JOB_STATUS_SUCCESS",
-		3: "JOB_STATUS_FAILED",
-		4: "JOB_STATUS_PENDING",
+		1: "JOB_STATUS_PENDING",
+		2: "JOB_STATUS_RUNNING",
+		3: "JOB_STATUS_SUCCESS",
+		4: "JOB_STATUS_FAILED",
 		5: "JOB_STATUS_TIMEOUT",
 		6: "JOB_STATUS_CANCELLED",
 	}
 	JobStatus_value = map[string]int32{
 		"JOB_STATUS_UNSPECIFIED": 0,
-		"JOB_STATUS_RUNNING":     1,
-		"JOB_STATUS_SUCCESS":     2,
-		"JOB_STATUS_FAILED":      3,
-		"JOB_STATUS_PENDING":     4,
+		"JOB_STATUS_PENDING":     1,
+		"JOB_STATUS_RUNNING":     2,
+		"JOB_STATUS_SUCCESS":     3,
+		"JOB_STATUS_FAILED":      4,
 		"JOB_STATUS_TIMEOUT":     5,
 		"JOB_STATUS_CANCELLED":   6,
 	}
@@ -359,10 +359,10 @@ const file_gofleet_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id*\xb8\x01\n" +
 	"\tJobStatus\x12\x1a\n" +
 	"\x16JOB_STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12JOB_STATUS_RUNNING\x10\x01\x12\x16\n" +
-	"\x12JOB_STATUS_SUCCESS\x10\x02\x12\x15\n" +
-	"\x11JOB_STATUS_FAILED\x10\x03\x12\x16\n" +
-	"\x12JOB_STATUS_PENDING\x10\x04\x12\x16\n" +
+	"\x12JOB_STATUS_PENDING\x10\x01\x12\x16\n" +
+	"\x12JOB_STATUS_RUNNING\x10\x02\x12\x16\n" +
+	"\x12JOB_STATUS_SUCCESS\x10\x03\x12\x15\n" +
+	"\x11JOB_STATUS_FAILED\x10\x04\x12\x16\n" +
 	"\x12JOB_STATUS_TIMEOUT\x10\x05\x12\x18\n" +
 	"\x14JOB_STATUS_CANCELLED\x10\x062\xc1\x01\n" +
 	"\n" +
