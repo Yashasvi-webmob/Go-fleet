@@ -332,6 +332,446 @@ func (x *CancelJobRequest) GetId() string {
 	return ""
 }
 
+type WorkerHello struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	WorkerId      string                 `protobuf:"bytes,1,opt,name=worker_id,json=workerId,proto3" json:"worker_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WorkerHello) Reset() {
+	*x = WorkerHello{}
+	mi := &file_gofleet_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WorkerHello) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WorkerHello) ProtoMessage() {}
+
+func (x *WorkerHello) ProtoReflect() protoreflect.Message {
+	mi := &file_gofleet_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WorkerHello.ProtoReflect.Descriptor instead.
+func (*WorkerHello) Descriptor() ([]byte, []int) {
+	return file_gofleet_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *WorkerHello) GetWorkerId() string {
+	if x != nil {
+		return x.WorkerId
+	}
+	return ""
+}
+
+type Heartbeat struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	HeartbeatId   string                 `protobuf:"bytes,1,opt,name=heartbeat_id,json=heartbeatId,proto3" json:"heartbeat_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Heartbeat) Reset() {
+	*x = Heartbeat{}
+	mi := &file_gofleet_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Heartbeat) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Heartbeat) ProtoMessage() {}
+
+func (x *Heartbeat) ProtoReflect() protoreflect.Message {
+	mi := &file_gofleet_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Heartbeat.ProtoReflect.Descriptor instead.
+func (*Heartbeat) Descriptor() ([]byte, []int) {
+	return file_gofleet_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Heartbeat) GetHeartbeatId() string {
+	if x != nil {
+		return x.HeartbeatId
+	}
+	return ""
+}
+
+type JobResult struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	Status        JobStatus              `protobuf:"varint,2,opt,name=status,proto3,enum=gofleet.v1.JobStatus" json:"status,omitempty"`
+	WorkerId      string                 `protobuf:"bytes,3,opt,name=worker_id,json=workerId,proto3" json:"worker_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *JobResult) Reset() {
+	*x = JobResult{}
+	mi := &file_gofleet_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JobResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JobResult) ProtoMessage() {}
+
+func (x *JobResult) ProtoReflect() protoreflect.Message {
+	mi := &file_gofleet_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JobResult.ProtoReflect.Descriptor instead.
+func (*JobResult) Descriptor() ([]byte, []int) {
+	return file_gofleet_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *JobResult) GetJobId() string {
+	if x != nil {
+		return x.JobId
+	}
+	return ""
+}
+
+func (x *JobResult) GetStatus() JobStatus {
+	if x != nil {
+		return x.Status
+	}
+	return JobStatus_JOB_STATUS_UNSPECIFIED
+}
+
+func (x *JobResult) GetWorkerId() string {
+	if x != nil {
+		return x.WorkerId
+	}
+	return ""
+}
+
+type WorkerMessage struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Payload:
+	//
+	//	*WorkerMessage_Hello
+	//	*WorkerMessage_Heartbeat
+	//	*WorkerMessage_JobResult
+	Payload       isWorkerMessage_Payload `protobuf_oneof:"payload"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WorkerMessage) Reset() {
+	*x = WorkerMessage{}
+	mi := &file_gofleet_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WorkerMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WorkerMessage) ProtoMessage() {}
+
+func (x *WorkerMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_gofleet_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WorkerMessage.ProtoReflect.Descriptor instead.
+func (*WorkerMessage) Descriptor() ([]byte, []int) {
+	return file_gofleet_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *WorkerMessage) GetPayload() isWorkerMessage_Payload {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+func (x *WorkerMessage) GetHello() *WorkerHello {
+	if x != nil {
+		if x, ok := x.Payload.(*WorkerMessage_Hello); ok {
+			return x.Hello
+		}
+	}
+	return nil
+}
+
+func (x *WorkerMessage) GetHeartbeat() *Heartbeat {
+	if x != nil {
+		if x, ok := x.Payload.(*WorkerMessage_Heartbeat); ok {
+			return x.Heartbeat
+		}
+	}
+	return nil
+}
+
+func (x *WorkerMessage) GetJobResult() *JobResult {
+	if x != nil {
+		if x, ok := x.Payload.(*WorkerMessage_JobResult); ok {
+			return x.JobResult
+		}
+	}
+	return nil
+}
+
+type isWorkerMessage_Payload interface {
+	isWorkerMessage_Payload()
+}
+
+type WorkerMessage_Hello struct {
+	Hello *WorkerHello `protobuf:"bytes,1,opt,name=hello,proto3,oneof"`
+}
+
+type WorkerMessage_Heartbeat struct {
+	Heartbeat *Heartbeat `protobuf:"bytes,2,opt,name=heartbeat,proto3,oneof"`
+}
+
+type WorkerMessage_JobResult struct {
+	JobResult *JobResult `protobuf:"bytes,3,opt,name=job_result,json=jobResult,proto3,oneof"`
+}
+
+func (*WorkerMessage_Hello) isWorkerMessage_Payload() {}
+
+func (*WorkerMessage_Heartbeat) isWorkerMessage_Payload() {}
+
+func (*WorkerMessage_JobResult) isWorkerMessage_Payload() {}
+
+type JobAssignment struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	JobId          string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	Command        string                 `protobuf:"bytes,2,opt,name=command,proto3" json:"command,omitempty"`
+	TimeoutSeconds int32                  `protobuf:"varint,3,opt,name=timeout_seconds,json=timeoutSeconds,proto3" json:"timeout_seconds,omitempty"`
+	Priority       string                 `protobuf:"bytes,4,opt,name=priority,proto3" json:"priority,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *JobAssignment) Reset() {
+	*x = JobAssignment{}
+	mi := &file_gofleet_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *JobAssignment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JobAssignment) ProtoMessage() {}
+
+func (x *JobAssignment) ProtoReflect() protoreflect.Message {
+	mi := &file_gofleet_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JobAssignment.ProtoReflect.Descriptor instead.
+func (*JobAssignment) Descriptor() ([]byte, []int) {
+	return file_gofleet_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *JobAssignment) GetJobId() string {
+	if x != nil {
+		return x.JobId
+	}
+	return ""
+}
+
+func (x *JobAssignment) GetCommand() string {
+	if x != nil {
+		return x.Command
+	}
+	return ""
+}
+
+func (x *JobAssignment) GetTimeoutSeconds() int32 {
+	if x != nil {
+		return x.TimeoutSeconds
+	}
+	return 0
+}
+
+func (x *JobAssignment) GetPriority() string {
+	if x != nil {
+		return x.Priority
+	}
+	return ""
+}
+
+type CancelRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CancelRequest) Reset() {
+	*x = CancelRequest{}
+	mi := &file_gofleet_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CancelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CancelRequest) ProtoMessage() {}
+
+func (x *CancelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_gofleet_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CancelRequest.ProtoReflect.Descriptor instead.
+func (*CancelRequest) Descriptor() ([]byte, []int) {
+	return file_gofleet_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *CancelRequest) GetJobId() string {
+	if x != nil {
+		return x.JobId
+	}
+	return ""
+}
+
+type ServerMessage struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Payload:
+	//
+	//	*ServerMessage_Assignment
+	//	*ServerMessage_Cancel
+	Payload       isServerMessage_Payload `protobuf_oneof:"payload"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ServerMessage) Reset() {
+	*x = ServerMessage{}
+	mi := &file_gofleet_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ServerMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServerMessage) ProtoMessage() {}
+
+func (x *ServerMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_gofleet_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServerMessage.ProtoReflect.Descriptor instead.
+func (*ServerMessage) Descriptor() ([]byte, []int) {
+	return file_gofleet_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ServerMessage) GetPayload() isServerMessage_Payload {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+func (x *ServerMessage) GetAssignment() *JobAssignment {
+	if x != nil {
+		if x, ok := x.Payload.(*ServerMessage_Assignment); ok {
+			return x.Assignment
+		}
+	}
+	return nil
+}
+
+func (x *ServerMessage) GetCancel() *CancelRequest {
+	if x != nil {
+		if x, ok := x.Payload.(*ServerMessage_Cancel); ok {
+			return x.Cancel
+		}
+	}
+	return nil
+}
+
+type isServerMessage_Payload interface {
+	isServerMessage_Payload()
+}
+
+type ServerMessage_Assignment struct {
+	Assignment *JobAssignment `protobuf:"bytes,1,opt,name=assignment,proto3,oneof"`
+}
+
+type ServerMessage_Cancel struct {
+	Cancel *CancelRequest `protobuf:"bytes,2,opt,name=cancel,proto3,oneof"`
+}
+
+func (*ServerMessage_Assignment) isServerMessage_Payload() {}
+
+func (*ServerMessage_Cancel) isServerMessage_Payload() {}
+
 var File_gofleet_proto protoreflect.FileDescriptor
 
 const file_gofleet_proto_rawDesc = "" +
@@ -356,7 +796,34 @@ const file_gofleet_proto_rawDesc = "" +
 	"\rGetJobRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\"\n" +
 	"\x10CancelJobRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id*\xb8\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"*\n" +
+	"\vWorkerHello\x12\x1b\n" +
+	"\tworker_id\x18\x01 \x01(\tR\bworkerId\".\n" +
+	"\tHeartbeat\x12!\n" +
+	"\fheartbeat_id\x18\x01 \x01(\tR\vheartbeatId\"n\n" +
+	"\tJobResult\x12\x15\n" +
+	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12-\n" +
+	"\x06status\x18\x02 \x01(\x0e2\x15.gofleet.v1.JobStatusR\x06status\x12\x1b\n" +
+	"\tworker_id\x18\x03 \x01(\tR\bworkerId\"\xba\x01\n" +
+	"\rWorkerMessage\x12/\n" +
+	"\x05hello\x18\x01 \x01(\v2\x17.gofleet.v1.WorkerHelloH\x00R\x05hello\x125\n" +
+	"\theartbeat\x18\x02 \x01(\v2\x15.gofleet.v1.HeartbeatH\x00R\theartbeat\x126\n" +
+	"\n" +
+	"job_result\x18\x03 \x01(\v2\x15.gofleet.v1.JobResultH\x00R\tjobResultB\t\n" +
+	"\apayload\"\x85\x01\n" +
+	"\rJobAssignment\x12\x15\n" +
+	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12\x18\n" +
+	"\acommand\x18\x02 \x01(\tR\acommand\x12'\n" +
+	"\x0ftimeout_seconds\x18\x03 \x01(\x05R\x0etimeoutSeconds\x12\x1a\n" +
+	"\bpriority\x18\x04 \x01(\tR\bpriority\"&\n" +
+	"\rCancelRequest\x12\x15\n" +
+	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\x8c\x01\n" +
+	"\rServerMessage\x12;\n" +
+	"\n" +
+	"assignment\x18\x01 \x01(\v2\x19.gofleet.v1.JobAssignmentH\x00R\n" +
+	"assignment\x123\n" +
+	"\x06cancel\x18\x02 \x01(\v2\x19.gofleet.v1.CancelRequestH\x00R\x06cancelB\t\n" +
+	"\apayload*\xb8\x01\n" +
 	"\tJobStatus\x12\x1a\n" +
 	"\x16JOB_STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12JOB_STATUS_PENDING\x10\x01\x12\x16\n" +
@@ -369,7 +836,9 @@ const file_gofleet_proto_rawDesc = "" +
 	"JobService\x12:\n" +
 	"\tCreateJob\x12\x1c.gofleet.v1.SubmitJobRequest\x1a\x0f.gofleet.v1.Job\x124\n" +
 	"\x06GetJob\x12\x19.gofleet.v1.GetJobRequest\x1a\x0f.gofleet.v1.Job\x12A\n" +
-	"\tCancelJob\x12\x1c.gofleet.v1.CancelJobRequest\x1a\x16.google.protobuf.EmptyB2Z0github.com/Yashasvi-webmob/gofleet/gofleet-protob\x06proto3"
+	"\tCancelJob\x12\x1c.gofleet.v1.CancelJobRequest\x1a\x16.google.protobuf.Empty2T\n" +
+	"\rWorkerService\x12C\n" +
+	"\aConnect\x12\x19.gofleet.v1.WorkerMessage\x1a\x19.gofleet.v1.ServerMessage(\x010\x01B2Z0github.com/Yashasvi-webmob/gofleet/gofleet-protob\x06proto3"
 
 var (
 	file_gofleet_proto_rawDescOnce sync.Once
@@ -384,31 +853,46 @@ func file_gofleet_proto_rawDescGZIP() []byte {
 }
 
 var file_gofleet_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_gofleet_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_gofleet_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_gofleet_proto_goTypes = []any{
 	(JobStatus)(0),              // 0: gofleet.v1.JobStatus
 	(*Job)(nil),                 // 1: gofleet.v1.Job
 	(*SubmitJobRequest)(nil),    // 2: gofleet.v1.SubmitJobRequest
 	(*GetJobRequest)(nil),       // 3: gofleet.v1.GetJobRequest
 	(*CancelJobRequest)(nil),    // 4: gofleet.v1.CancelJobRequest
-	(*timestamp.Timestamp)(nil), // 5: google.protobuf.Timestamp
-	(*empty.Empty)(nil),         // 6: google.protobuf.Empty
+	(*WorkerHello)(nil),         // 5: gofleet.v1.WorkerHello
+	(*Heartbeat)(nil),           // 6: gofleet.v1.Heartbeat
+	(*JobResult)(nil),           // 7: gofleet.v1.JobResult
+	(*WorkerMessage)(nil),       // 8: gofleet.v1.WorkerMessage
+	(*JobAssignment)(nil),       // 9: gofleet.v1.JobAssignment
+	(*CancelRequest)(nil),       // 10: gofleet.v1.CancelRequest
+	(*ServerMessage)(nil),       // 11: gofleet.v1.ServerMessage
+	(*timestamp.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(*empty.Empty)(nil),         // 13: google.protobuf.Empty
 }
 var file_gofleet_proto_depIdxs = []int32{
-	0, // 0: gofleet.v1.Job.status:type_name -> gofleet.v1.JobStatus
-	5, // 1: gofleet.v1.Job.created_at:type_name -> google.protobuf.Timestamp
-	5, // 2: gofleet.v1.Job.updated_at:type_name -> google.protobuf.Timestamp
-	2, // 3: gofleet.v1.JobService.CreateJob:input_type -> gofleet.v1.SubmitJobRequest
-	3, // 4: gofleet.v1.JobService.GetJob:input_type -> gofleet.v1.GetJobRequest
-	4, // 5: gofleet.v1.JobService.CancelJob:input_type -> gofleet.v1.CancelJobRequest
-	1, // 6: gofleet.v1.JobService.CreateJob:output_type -> gofleet.v1.Job
-	1, // 7: gofleet.v1.JobService.GetJob:output_type -> gofleet.v1.Job
-	6, // 8: gofleet.v1.JobService.CancelJob:output_type -> google.protobuf.Empty
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0,  // 0: gofleet.v1.Job.status:type_name -> gofleet.v1.JobStatus
+	12, // 1: gofleet.v1.Job.created_at:type_name -> google.protobuf.Timestamp
+	12, // 2: gofleet.v1.Job.updated_at:type_name -> google.protobuf.Timestamp
+	0,  // 3: gofleet.v1.JobResult.status:type_name -> gofleet.v1.JobStatus
+	5,  // 4: gofleet.v1.WorkerMessage.hello:type_name -> gofleet.v1.WorkerHello
+	6,  // 5: gofleet.v1.WorkerMessage.heartbeat:type_name -> gofleet.v1.Heartbeat
+	7,  // 6: gofleet.v1.WorkerMessage.job_result:type_name -> gofleet.v1.JobResult
+	9,  // 7: gofleet.v1.ServerMessage.assignment:type_name -> gofleet.v1.JobAssignment
+	10, // 8: gofleet.v1.ServerMessage.cancel:type_name -> gofleet.v1.CancelRequest
+	2,  // 9: gofleet.v1.JobService.CreateJob:input_type -> gofleet.v1.SubmitJobRequest
+	3,  // 10: gofleet.v1.JobService.GetJob:input_type -> gofleet.v1.GetJobRequest
+	4,  // 11: gofleet.v1.JobService.CancelJob:input_type -> gofleet.v1.CancelJobRequest
+	8,  // 12: gofleet.v1.WorkerService.Connect:input_type -> gofleet.v1.WorkerMessage
+	1,  // 13: gofleet.v1.JobService.CreateJob:output_type -> gofleet.v1.Job
+	1,  // 14: gofleet.v1.JobService.GetJob:output_type -> gofleet.v1.Job
+	13, // 15: gofleet.v1.JobService.CancelJob:output_type -> google.protobuf.Empty
+	11, // 16: gofleet.v1.WorkerService.Connect:output_type -> gofleet.v1.ServerMessage
+	13, // [13:17] is the sub-list for method output_type
+	9,  // [9:13] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_gofleet_proto_init() }
@@ -416,15 +900,24 @@ func file_gofleet_proto_init() {
 	if File_gofleet_proto != nil {
 		return
 	}
+	file_gofleet_proto_msgTypes[7].OneofWrappers = []any{
+		(*WorkerMessage_Hello)(nil),
+		(*WorkerMessage_Heartbeat)(nil),
+		(*WorkerMessage_JobResult)(nil),
+	}
+	file_gofleet_proto_msgTypes[10].OneofWrappers = []any{
+		(*ServerMessage_Assignment)(nil),
+		(*ServerMessage_Cancel)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_gofleet_proto_rawDesc), len(file_gofleet_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   4,
+			NumMessages:   11,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_gofleet_proto_goTypes,
 		DependencyIndexes: file_gofleet_proto_depIdxs,

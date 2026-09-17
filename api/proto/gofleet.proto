@@ -46,3 +46,48 @@ service JobService{
     rpc GetJob(GetJobRequest) returns (Job);
     rpc CancelJob(CancelJobRequest) returns(google.protobuf.Empty);
 }
+
+message WorkerHello{
+   string worker_id = 1;
+}
+
+message Heartbeat{
+   string heartbeat_id =1;
+}
+
+message JobResult{
+   string job_id=1;
+   JobStatus status=2;
+   string worker_id =3;
+
+}
+
+message WorkerMessage{
+    oneof payload{
+        WorkerHello hello =1;
+        Heartbeat heartbeat=2;
+        JobResult job_result =3;
+    }
+}
+
+message JobAssignment{
+   string job_id =1;
+   string command=2;
+   int32 timeout_seconds=3;
+   string priority=4;
+}
+
+message CancelRequest{
+    string job_id= 1;
+}
+
+message ServerMessage{
+    oneof payload{
+        JobAssignment assignment =1;
+        CancelRequest cancel=2;
+    }
+}
+
+service WorkerService{
+    rpc Connect(stream WorkerMessage) returns (stream ServerMessage);
+}

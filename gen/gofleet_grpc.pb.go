@@ -196,3 +196,99 @@ var JobService_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "gofleet.proto",
 }
+
+const (
+	WorkerService_Connect_FullMethodName = "/gofleet.v1.WorkerService/Connect"
+)
+
+// WorkerServiceClient is the client API for WorkerService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type WorkerServiceClient interface {
+	Connect(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[WorkerMessage, ServerMessage], error)
+}
+
+type workerServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWorkerServiceClient(cc grpc.ClientConnInterface) WorkerServiceClient {
+	return &workerServiceClient{cc}
+}
+
+func (c *workerServiceClient) Connect(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[WorkerMessage, ServerMessage], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &WorkerService_ServiceDesc.Streams[0], WorkerService_Connect_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[WorkerMessage, ServerMessage]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type WorkerService_ConnectClient = grpc.BidiStreamingClient[WorkerMessage, ServerMessage]
+
+// WorkerServiceServer is the server API for WorkerService service.
+// All implementations must embed UnimplementedWorkerServiceServer
+// for forward compatibility.
+type WorkerServiceServer interface {
+	Connect(grpc.BidiStreamingServer[WorkerMessage, ServerMessage]) error
+	mustEmbedUnimplementedWorkerServiceServer()
+}
+
+// UnimplementedWorkerServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedWorkerServiceServer struct{}
+
+func (UnimplementedWorkerServiceServer) Connect(grpc.BidiStreamingServer[WorkerMessage, ServerMessage]) error {
+	return status.Error(codes.Unimplemented, "method Connect not implemented")
+}
+func (UnimplementedWorkerServiceServer) mustEmbedUnimplementedWorkerServiceServer() {}
+func (UnimplementedWorkerServiceServer) testEmbeddedByValue()                       {}
+
+// UnsafeWorkerServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to WorkerServiceServer will
+// result in compilation errors.
+type UnsafeWorkerServiceServer interface {
+	mustEmbedUnimplementedWorkerServiceServer()
+}
+
+func RegisterWorkerServiceServer(s grpc.ServiceRegistrar, srv WorkerServiceServer) {
+	// If the following call panics, it indicates UnimplementedWorkerServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&WorkerService_ServiceDesc, srv)
+}
+
+func _WorkerService_Connect_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(WorkerServiceServer).Connect(&grpc.GenericServerStream[WorkerMessage, ServerMessage]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type WorkerService_ConnectServer = grpc.BidiStreamingServer[WorkerMessage, ServerMessage]
+
+// WorkerService_ServiceDesc is the grpc.ServiceDesc for WorkerService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var WorkerService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "gofleet.v1.WorkerService",
+	HandlerType: (*WorkerServiceServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Connect",
+			Handler:       _WorkerService_Connect_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
+	Metadata: "gofleet.proto",
+}
